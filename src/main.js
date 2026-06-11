@@ -71,7 +71,7 @@ function analyzeSalesData(data, options) {
         ...seller, // сначала копируем все поля продавца
         id: seller.id ?? "unknown", // затем задаём id
         name: `${seller.first_name} ${seller.last_name}` || "Неизвестно", // и name
-        products_sold: {}, // новые поля
+        products_sold: {},
         sales_count: 0,
         revenue: 0,
         profit: 0,
@@ -88,7 +88,6 @@ function analyzeSalesData(data, options) {
     {},
   );
 
-  
   data.purchase_records.forEach((record) => {
     const seller = sellerIndex[record.seller_id];
     seller.sales_count += 1;
@@ -108,7 +107,6 @@ function analyzeSalesData(data, options) {
     });
   });
 
-  
   const sellerStats = Object.values(sellerIndex);
   sellerStats.sort((a, b) => b.profit - a.profit);
 
