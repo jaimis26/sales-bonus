@@ -63,7 +63,7 @@ function analyzeSalesData(data, options) {
 
   const { calculateRevenue, calculateBonus } = options;
 
-  // 2. Создаём индексы для быстрого доступа
+  
   const sellerIndex = data.sellers.reduce(
     (result, seller) => ({
       ...result,
@@ -88,7 +88,7 @@ function analyzeSalesData(data, options) {
     {},
   );
 
-  // 3. Обновляем данные о продажах
+  
   data.purchase_records.forEach((record) => {
     const seller = sellerIndex[record.seller_id];
     seller.sales_count += 1;
@@ -108,7 +108,7 @@ function analyzeSalesData(data, options) {
     });
   });
 
-  // 4. Сортируем продавцов по прибыли
+  
   const sellerStats = Object.values(sellerIndex);
   sellerStats.sort((a, b) => b.profit - a.profit);
 
@@ -122,7 +122,7 @@ function analyzeSalesData(data, options) {
     seller.top_products = topProducts;
   });
 
-  // 5. Формируем итоговый отчёт
+  
   return sellerStats.map((seller) => ({
     seller_id: seller.id,
     name: seller.name,
