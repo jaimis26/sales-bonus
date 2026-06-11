@@ -63,7 +63,6 @@ function analyzeSalesData(data, options) {
 
   const { calculateRevenue, calculateBonus } = options;
 
-  
   const sellerIndex = data.sellers.reduce(
     (result, seller) => ({
       ...result,
@@ -120,7 +119,6 @@ function analyzeSalesData(data, options) {
     seller.top_products = topProducts;
   });
 
-  
   return sellerStats.map((seller) => ({
     seller_id: seller.id,
     name: seller.name,
@@ -131,16 +129,3 @@ function analyzeSalesData(data, options) {
     bonus: +seller.bonus.toFixed(2),
   }));
 }
-// @TODO: Проверка наличия опций
-
-// @TODO: Подготовка промежуточных данных для сбора статистики
-
-// @TODO: Индексация продавцов и товаров для быстрого доступа
-
-// @TODO: Расчет выручки и прибыли для каждого продавца
-
-// @TODO: Сортировка продавцов по прибыли
-
-// @TODO: Назначение премий на основе ранжирования
-
-// @TODO: Подготовка итоговой коллекции с нужными полями
