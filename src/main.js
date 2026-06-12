@@ -91,6 +91,7 @@ function analyzeSalesData(data, options) {
     const seller = sellerIndex[record.seller_id];
     seller.sales_count += 1;
     seller.revenue += record.total_amount;
+    
 
     record.items.forEach((item) => {
       const product = productIndex[item.sku];
@@ -98,6 +99,7 @@ function analyzeSalesData(data, options) {
       const revenue = calculateRevenue(item);
       const profit = revenue - cost.toFixed(2);
       seller.profit += profit;
+     
 
       if (!seller.products_sold[item.sku]) {
         seller.products_sold[item.sku] = 0;
@@ -115,7 +117,7 @@ function analyzeSalesData(data, options) {
     const topProducts = Object.entries(seller.products_sold)
       .sort(([_, a], [__, b]) => b - a)
       .slice(0, 10)
-      .map(([productId, quantity]) => ({ productId, quantity }));
+      .map(([productId, quantity]) => ({ sku: productId, quantity }));
     seller.top_products = topProducts;
   });
 
